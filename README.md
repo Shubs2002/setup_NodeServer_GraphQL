@@ -34,9 +34,7 @@ React-graphql/
 ├── server.js # Main GraphQL server<br>
 ├── package.json # Dependencies<br>
 
-yaml
-Copy
-Edit
+
 
 ---
 
@@ -49,15 +47,14 @@ npm install
 If you run into peer dependency errors, use:
 
 bash
-Copy
-Edit
+
 npm install --legacy-peer-deps
 2. ⚙️ Configure Database
-Edit DB_Connector/configs/config.js with your MySQL credentials:
+ DB_Connector/configs/config.js with your MySQL credentials:
 
 js
-Copy
-Edit
+
+
 export default {
   development: {
     username: 'root',
@@ -71,8 +68,8 @@ export default {
 Sequelize is initialized in sequelizefactory.js:
 
 js
-Copy
-Edit
+
+
 import { Sequelize } from 'sequelize';
 import configFile from './config.js';
 
@@ -95,8 +92,8 @@ Models are located in DB_Connector/models/. Relationships (associations) are dec
 All models are imported and synced in index.js:
 
 js
-Copy
-Edit
+
+
 await sequelize.authenticate();
 await sequelize.sync();
 console.log('✅ Connected to MySQL via Sequelize.');
@@ -104,8 +101,8 @@ console.log('✅ Connected to MySQL via Sequelize.');
 Inside server.js, your schema might look like:
 
 graphql
-Copy
-Edit
+
+
 type Query {
   getEmployee(id: String): Employee
   getAllEmployees: [Employee]
@@ -128,8 +125,8 @@ Resolvers connect your schema to Sequelize queries. Define how data is fetched a
 Example:
 
 js
-Copy
-Edit
+
+
 const resolvers = {
   Query: {
     getAllEmployees: async () => await Employee.findAll(),
@@ -142,8 +139,8 @@ const resolvers = {
 Start the server:
 
 bash
-Copy
-Edit
+
+
 npm run build
 Test via GraphQL Playground:
 
@@ -151,8 +148,8 @@ URL: http://localhost:4000
 
 Example Queries
 graphql
-Copy
-Edit
+
+
 query {
   getAllEmployees {
     id
@@ -160,8 +157,8 @@ query {
   }
 }
 graphql
-Copy
-Edit
+
+
 mutation {
   addEmployee(
     name: "John",
@@ -190,9 +187,9 @@ Feel free to fork the repo, raise issues, or suggest improvements! Collaboration
 📜 License
 This project is open-source under the MIT License.
 
-yaml
-Copy
-Edit
+
+
+
 
 ---
 
