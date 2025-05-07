@@ -1,0 +1,1 @@
+'mysql+mysqlconnector://root:@localhost/employeemngmtsys'
