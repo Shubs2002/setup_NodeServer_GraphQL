@@ -16,23 +16,23 @@ This project is a **GraphQL API** built using **Apollo Server**, **Express**, **
 ## 📁 Project Structure
 
 React-graphql/
-│
-├── DB_Connector/
-│ ├── configs/
-│ │ ├── config.js # DB credentials
-│ │ ├── sequelizefactory.js # Sequelize instance
-│ ├── models/
-│ │ ├── Employee.js
-│ │ ├── Hobby.js
-│ │ ├── Education.js
-│ │ ├── EmployeeHobby.js
-│ │ ├── EmployeeEducation.js
-│ │ ├── User.js
-│ │ ├── Association.js # Relationships between models
-│ │ ├── index.js # Model import and syncing
-│
-├── server.js # Main GraphQL server
-├── package.json # Dependencies
+│ <br>
+├── DB_Connector/<br>
+│ ├── configs/<br>
+│ │ ├── config.js # DB credentials <br>
+│ │ ├── sequelizefactory.js # Sequelize instance <br>
+│ ├── models/<br>
+│ │ ├── Employee.js<br>
+│ │ ├── Hobby.js<br>
+│ │ ├── Education.js<br>
+│ │ ├── EmployeeHobby.js<br>
+│ │ ├── EmployeeEducation.js<br>
+│ │ ├── User.js<br>
+│ │ ├── Association.js # Relationships between models<br>
+│ │ ├── index.js # Model import and syncing<br>
+│<br>
+├── server.js # Main GraphQL server<br>
+├── package.json # Dependencies<br>
 
 yaml
 Copy
