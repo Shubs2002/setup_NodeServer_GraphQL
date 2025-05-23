@@ -1,8 +1,8 @@
 // import axios from 'axios';
-import { getAllEmployees, getEmployeebyId} from "./EmployeeQueries.js";
-import { employeeLogin, EmployeeLogout, addEmployee, deleteEmployee,updateEmployee } from "./EmployeeMutation.js";
-import { addUser, userLogin, userLogout } from "./UserMutations.js";
-import { getAllusers } from "./UserQuries.js";
+import { getAllEmployees, getEmployeebyId} from "./Queries/EmployeeQueries";
+import { employeeLogin, EmployeeLogout, addEmployee, deleteEmployee,updateEmployee } from "./Mutations/EmployeeMutation";
+import { addUser, userLogin, userLogout } from "./Mutations/UserMutations";
+import { getAllusers } from "./Queries/UserQuries";
 
 const resolvers = {
   Query: {

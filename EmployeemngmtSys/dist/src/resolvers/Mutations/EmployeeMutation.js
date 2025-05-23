@@ -1,7 +1,16 @@
 import axios from "axios";
+import dotenv from 'dotenv';
+let envFile = '.env'; // default to development
+if (process.env.NODE_ENV === 'test') {
+    envFile = '.env.test';
+}
+else if (process.env.NODE_ENV === 'production') {
+    envFile = '.env.production';
+}
+dotenv.config({ path: envFile });
 export const employeeLogin = async (_, args) => {
     try {
-        const response = await axios.post('http://127.0.0.1:5000/login-emp', args.Employee_login_data);
+        const response = await axios.post(`${process.env.URL_EMPLOYEE_LOGIN}`, args.Employee_login_data);
         return response.data;
     }
     catch (error) {
@@ -15,7 +24,7 @@ export const employeeLogin = async (_, args) => {
 };
 export const EmployeeLogout = async () => {
     try {
-        const response = await axios.post('http://127.0.0.1:5000/logout-emp');
+        const response = await axios.post(`${process.env.URL_EMPLOYEE_LOGOUT}`);
         return response.data;
     }
     catch (error) {
@@ -29,7 +38,7 @@ export const EmployeeLogout = async () => {
 };
 export const addEmployee = async (_, args) => {
     try {
-        const response = await axios.post('http://127.0.0.1:5000/createEmployee', args.input, {
+        const response = await axios.post(`${process.env.URL_EMPLOYEE_CREATE}`, args.input, {
             headers: {
                 'Content-Type': 'multipart/form-data',
             },
@@ -47,7 +56,7 @@ export const addEmployee = async (_, args) => {
 };
 export const updateEmployee = async (_, args) => {
     try {
-        const response = await axios.put(`http://127.0.0.1:5000/update-employee/${args.id}`, args.input);
+        const response = await axios.put(`${process.env.URL_EMPLOYEE_UPDATE}/${args.id}`, args.input);
         return response.data;
     }
     catch (error) {

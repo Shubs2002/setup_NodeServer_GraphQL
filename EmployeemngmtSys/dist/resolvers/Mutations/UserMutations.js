@@ -1,7 +1,16 @@
 import axios from 'axios';
+import dotenv from 'dotenv';
+let envFile = '.env'; // default to development
+if (process.env.NODE_ENV === 'test') {
+    envFile = '.env.test';
+}
+else if (process.env.NODE_ENV === 'production') {
+    envFile = '.env.production';
+}
+dotenv.config({ path: envFile });
 export const userLogin = async (_, args) => {
     try {
-        const response = await axios.post('http://127.0.0.1:5000/login', args.USer_login_data);
+        const response = await axios.post(`${process.env.URL_USER_LOGIN}`, args.USer_login_data);
         return response.data;
     }
     catch (error) {
@@ -15,7 +24,7 @@ export const userLogin = async (_, args) => {
 };
 export const userLogout = async () => {
     try {
-        const response = await axios.post('http://127.0.0.1:5000/logout');
+        const response = await axios.post(`${process.env.URL_USER_LOGOUT}`);
         return response.data;
     }
     catch (error) {
@@ -29,7 +38,7 @@ export const userLogout = async () => {
 };
 export const addUser = async (_, args) => {
     try {
-        const response = await axios.post('http://127.0.0.1:5000/create-user', args.input);
+        const response = await axios.post(`${process.env.URL_USER_CREATE}`, args.input);
         return response.data;
     }
     catch (error) {

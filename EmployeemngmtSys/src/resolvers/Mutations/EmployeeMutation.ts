@@ -1,7 +1,17 @@
 import axios from "axios";
+import dotenv from 'dotenv'
+
+let envFile = '.env'; // default to development
+
+if (process.env.NODE_ENV === 'test') {
+  envFile = '.env.test';
+} else if (process.env.NODE_ENV === 'production') {
+  envFile = '.env.production';
+}
+dotenv.config({ path: envFile });
 export const employeeLogin = async (_: any, args: { Employee_login_data:{phone_no: string; password: string} }) => {
   try{
-    const response = await axios.post('http://127.0.0.1:5000/login-emp',args.Employee_login_data);
+    const response = await axios.post(`${process.env.URL_EMPLOYEE_LOGIN}`,args.Employee_login_data);
     return response.data;
 
   }
@@ -17,7 +27,7 @@ export const employeeLogin = async (_: any, args: { Employee_login_data:{phone_n
 
 export const EmployeeLogout = async () =>{
   try{
-    const response = await axios.post('http://127.0.0.1:5000/logout-emp')
+    const response = await axios.post(`${process.env.URL_EMPLOYEE_LOGOUT}`)
     return response.data;
   }
   catch(error: any){
@@ -30,10 +40,10 @@ export const EmployeeLogout = async () =>{
   }
 }
 
-export const addEmployee = async (_: any, args: { input: { name: string; phone_no: string; birthDate:Date; gender: string; description: string; hobbies:String; education: string; password: string; file: any; } }) => {
+export const addEmployee = async (_: any, args: { input: { name: string; phone_no: string; birthDate:Date; gender: string; description: string; hobbies:string; education: string; password: string; file: any; } }) => {
 
   try{
-    const response = await axios.post('http://127.0.0.1:5000/createEmployee', args.input, {
+    const response = await axios.post(`${process.env.URL_EMPLOYEE_CREATE}`, args.input, {
     headers: {
       'Content-Type': 'multipart/form-data',
     },
@@ -52,7 +62,7 @@ export const addEmployee = async (_: any, args: { input: { name: string; phone_n
 
 export const updateEmployee = async (_:any, args: { id: string; input: { name: string; phone_no: string; birth_date: Date; gender: string; description: string; hobbies: string; education: string; }}) =>{
   try{
-    const response = await axios.put(`http://127.0.0.1:5000/update-employee/${args.id}`, args.input)
+    const response = await axios.put(`${process.env.URL_EMPLOYEE_UPDATE}/${args.id}`, args.input)
     return response.data;
   }
   catch(error:any){
@@ -67,7 +77,7 @@ export const updateEmployee = async (_:any, args: { id: string; input: { name: s
 
 export const deleteEmployee = async (_:any, args : {id:string} ) => {
   try{
-    const response = await axios.delete(`http://127.0.0.1:5000/delete-employee/${args.id}`)
+    const response = await axios.delete(`${process.env.URL_EMPLOYEE_DELETE}/${args.id}`)
     return response.data;
   }
   catch(error:any){
